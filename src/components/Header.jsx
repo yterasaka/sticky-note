@@ -6,7 +6,7 @@ const HeaderWrapper = styled.header`
   align-content: center;
   display: flex;
   height: 3rem;
-  justify-content: space-between;
+  justify-content: start;
   line-height: 2rem;
   padding: 0.5rem 1rem;
   background-color: beige;
@@ -15,13 +15,16 @@ const HeaderWrapper = styled.header`
 
 const HeaderTitle = styled.div`
   font-size: 1.5rem;
+  font-weight: 500;
+  margin-left: 75px;
+  padding-top: 7px; 
 `;
 
 export const Header = () => {
   return (
   <HeaderWrapper>
     <SlideMenu />
-    <HeaderTitle>Sticky Note</HeaderTitle>
+    <HeaderTitle>StickyNote</HeaderTitle>
   </HeaderWrapper>
   );
 };
