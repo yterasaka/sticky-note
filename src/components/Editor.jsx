@@ -4,8 +4,30 @@ import useMemos from "../hooks/useMemos";
 const Form = styled.form`
   margin: 1rem;
   text-align: center;
-  height: 2rem;
+  height: rem;
+  display: flex;
+  flex-direction: column;
 `;
+
+const TextInput = styled.textarea`
+  height: 100px;
+  width: 300px; 
+  outline: none;
+  margin-bottom: 5px;
+`
+const AddButton = styled.input`
+  width: 100px;
+  margin: 0 auto;
+  background-color: lightblue;
+  border: 1px solid;
+  box-shadow: 0px 3px #bfbfbf;
+  border-radius: 50px;
+  &:active {
+    box-shadow: none;
+    position: relative;
+    top: 3px;
+  }
+`
 
 const Container = styled.div`
   display: flex;
@@ -37,13 +59,13 @@ export const Editor = () => {
           handleOnSubmit();
         }}
       >
-        <input
+        <TextInput
           type="text"
           value={text}
           placeholder="Enter Memo"
           onChange={(e) => handleOnChange(e)}
         />
-        <input type="submit" value="Add" onSubmit={handleOnSubmit} />
+        <AddButton type="submit" value="Add" onSubmit={handleOnSubmit} />
       </Form>
 
       <MemoArea>
