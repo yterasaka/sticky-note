@@ -37,14 +37,22 @@ const Container = styled.div`
 `;
 
 const MemoArea = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   width: 80%;
 `;
 
 const MemoItem = styled.li`
   list-style: none;
+  border: 1px solid;
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  margin: 15px;
+  background-color: beige;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Editor = () => {
@@ -73,16 +81,16 @@ export const Editor = () => {
           return (
             <MemoItem key={memo.id}>
               <input
-                type="checkbox"
-                disabled={memo.removed}
-                checked={memo.checked}
-                onChange={() => handleOnMemo(memo, "checked", !memo.checked)}
-              />
-              <input
                 type="text"
                 disabled={memo.checked || memo.removed}
                 value={memo.value}
                 onChange={(e) => handleOnMemo(memo, "value", e.target.value)}
+              />
+              <input
+                type="checkbox"
+                disabled={memo.removed}
+                checked={memo.checked}
+                onChange={() => handleOnMemo(memo, "checked", !memo.checked)}
               />
               <button
                 onClick={() => handleOnMemo(memo, "removed", !memo.removed)}
