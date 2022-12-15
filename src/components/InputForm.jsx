@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
+import useMemos from "../hooks/useMemos";
+
 
 const Form = styled.form`
   margin: 1rem;
@@ -26,37 +28,40 @@ const MemoItem = styled.li`
 `
 
 export const InputForm = () => {
-  const [text, setText] = useState("");
-  const [memos, setMemos] = useState([]);
+  const { text, memos, handleOnChange, handleOnSubmit, handleOnMemo } = useMemos();
 
-  const handleOnChange = (e) => {
-    setText(e.target.value);
-  };
 
-  const handleOnSubmit = () => {
-    if (!text) return;
+  // const [text, setText] = useState("");
+  // const [memos, setMemos] = useState([]);
 
-    const newMemo = {
-      value: text,
-      id: new Date().getTime(),
-      checked: false,
-      removed: false,
-    };
+  // const handleOnChange = (e) => {
+  //   setText(e.target.value);
+  // };
 
-    setMemos([newMemo, ...memos]);
-    setText("");
-  };
+  // const handleOnSubmit = () => {
+  //   if (!text) return;
 
-  const handleOnMemo = (obj, key, value) => {
-    const deepCopy = memos.map((memo) => ({ ...memo }));
-    const newMemos = deepCopy.map((memo) => {
-      if (memo.id === obj.id) {
-        memo[key] = value;
-      }
-      return memo;
-    });
-    setMemos(newMemos);
-  };
+  //   const newMemo = {
+  //     value: text,
+  //     id: new Date().getTime(),
+  //     checked: false,
+  //     removed: false,
+  //   };
+
+  //   setMemos([newMemo, ...memos]);
+  //   setText("");
+  // };
+
+  // const handleOnMemo = (obj, key, value) => {
+  //   const deepCopy = memos.map((memo) => ({ ...memo }));
+  //   const newMemos = deepCopy.map((memo) => {
+  //     if (memo.id === obj.id) {
+  //       memo[key] = value;
+  //     }
+  //     return memo;
+  //   });
+  //   setMemos(newMemos);
+  // };
 
   return (
     <Container>
