@@ -1,7 +1,5 @@
-import { useState } from "react";
 import styled from "styled-components";
 import useMemos from "../hooks/useMemos";
-
 
 const Form = styled.form`
   margin: 1rem;
@@ -14,54 +12,22 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 24px;
-`
+`;
 
 const MemoArea = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 20px;
   width: 80%;
-`
+`;
 
 const MemoItem = styled.li`
   list-style: none;
-`
+`;
 
-export const InputForm = () => {
-  const { text, memos, handleOnChange, handleOnSubmit, handleOnMemo } = useMemos();
-
-
-  // const [text, setText] = useState("");
-  // const [memos, setMemos] = useState([]);
-
-  // const handleOnChange = (e) => {
-  //   setText(e.target.value);
-  // };
-
-  // const handleOnSubmit = () => {
-  //   if (!text) return;
-
-  //   const newMemo = {
-  //     value: text,
-  //     id: new Date().getTime(),
-  //     checked: false,
-  //     removed: false,
-  //   };
-
-  //   setMemos([newMemo, ...memos]);
-  //   setText("");
-  // };
-
-  // const handleOnMemo = (obj, key, value) => {
-  //   const deepCopy = memos.map((memo) => ({ ...memo }));
-  //   const newMemos = deepCopy.map((memo) => {
-  //     if (memo.id === obj.id) {
-  //       memo[key] = value;
-  //     }
-  //     return memo;
-  //   });
-  //   setMemos(newMemos);
-  // };
+export const Editor = () => {
+  const { text, memos, handleOnChange, handleOnSubmit, handleOnMemo } =
+    useMemos();
 
   return (
     <Container>
