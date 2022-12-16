@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import useMemos from "../hooks/useMemos";
+import { BsTrash, BsFillStarFill } from "react-icons/bs";
 
 const Form = styled.form`
   margin: 1rem;
@@ -11,10 +12,11 @@ const Form = styled.form`
 
 const TextInput = styled.textarea`
   height: 100px;
-  width: 300px; 
+  width: 300px;
   outline: none;
   margin-bottom: 5px;
-`
+  resize: none;
+`;
 const AddButton = styled.input`
   width: 100px;
   margin: 0 auto;
@@ -27,7 +29,7 @@ const AddButton = styled.input`
     position: relative;
     top: 3px;
   }
-`
+`;
 
 const Container = styled.div`
   display: flex;
@@ -55,6 +57,30 @@ const MemoItem = styled.li`
   flex-direction: column;
 `;
 
+const MemoText = styled.textarea`
+  outline: none;
+  resize: none;
+  border: none;
+  background-color: beige;
+  height: 100%;
+`;
+
+const MemoButton = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const MemoTrash = styled.button`
+  background-color: beige;
+  border: none;
+  border-radius: 3px;
+  color: darkblue;
+  width: 30px;
+  padding: 2px;
+  font-size: 1rem;
+`;
+
 export const Editor = () => {
   const { text, memos, handleOnChange, handleOnSubmit, handleOnMemo } =
     useMemos();
@@ -80,23 +106,25 @@ export const Editor = () => {
         {memos.map((memo) => {
           return (
             <MemoItem key={memo.id}>
-              <input
+              <MemoText
                 type="text"
                 disabled={memo.checked || memo.removed}
                 value={memo.value}
                 onChange={(e) => handleOnMemo(memo, "value", e.target.value)}
               />
-              <input
-                type="checkbox"
-                disabled={memo.removed}
-                checked={memo.checked}
-                onChange={() => handleOnMemo(memo, "checked", !memo.checked)}
-              />
-              <button
-                onClick={() => handleOnMemo(memo, "removed", !memo.removed)}
-              >
-                {memo.removed ? "Restore" : "Remove"}
-              </button>
+              <MemoButton>
+                <input
+                  type="checkbox"
+                  disabled={memo.removed}
+                  checked={memo.checked}
+                  onChange={() => handleOnMemo(memo, "checked", !memo.checked)}
+                />
+                <MemoTrash
+                  onClick={() => handleOnMemo(memo, "removed", !memo.removed)}
+                >
+                  {memo.removed ? <BsFillStarFill /> : <BsTrash />}
+                </MemoTrash>
+              </MemoButton>
             </MemoItem>
           );
         })}
