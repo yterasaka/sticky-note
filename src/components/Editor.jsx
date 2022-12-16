@@ -33,7 +33,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px;
+  padding-top: 5rem;
 `;
 
 const MemoArea = styled.ul`
