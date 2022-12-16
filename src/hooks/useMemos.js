@@ -22,6 +22,9 @@ const useMemos = () => {
     setText("");
   };
 
+  //test
+  // console.log(memos);
+
   const handleOnMemo = (obj, key, value) => {
     const deepCopy = memos.map((memo) => ({ ...memo }));
     const newMemos = deepCopy.map((memo) => {

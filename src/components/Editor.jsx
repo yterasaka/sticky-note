@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import useMemos from "../hooks/useMemos";
-import { BsTrash, BsFillStarFill } from "react-icons/bs";
+import { BsTrash, BsFillStarFill, BsStar } from "react-icons/bs";
 
 const Form = styled.form`
   margin: 1rem;
@@ -71,6 +71,16 @@ const MemoButton = styled.div`
   justify-content: space-between;
 `;
 
+const MemoCheck = styled.button`
+  background-color: beige;
+  border: none;
+  border-radius: 3px;
+  color: darkblue;
+  width: 30px;
+  padding: 2px;
+  font-size: 1rem;
+`
+
 const MemoTrash = styled.button`
   background-color: beige;
   border: none;
@@ -113,12 +123,11 @@ export const Editor = () => {
                 onChange={(e) => handleOnMemo(memo, "value", e.target.value)}
               />
               <MemoButton>
-                <input
-                  type="checkbox"
-                  disabled={memo.removed}
-                  checked={memo.checked}
-                  onChange={() => handleOnMemo(memo, "checked", !memo.checked)}
-                />
+                <MemoCheck
+                  onClick={() => handleOnMemo(memo, "checked", !memo.checked)}
+                >
+                  {memo.checked ? <BsFillStarFill /> : <BsStar />}
+                </MemoCheck>
                 <MemoTrash
                   onClick={() => handleOnMemo(memo, "removed", !memo.removed)}
                 >
