@@ -9,12 +9,13 @@ import {
 
 import { Header } from "./components/Header";
 import SlideMenu from "./components/SlideMenu";
+import { Modal } from "./components/Modal";
 
 const App = () => {
-  const [text, setText] = useState("");
   const [memos, setMemos] = useState([]);
   const [filter, setFilter] = useState("all");
   const [filteredMemos, setFilteredMemos] = useState([]);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("Memos", JSON.stringify(memos));
@@ -30,6 +31,9 @@ const App = () => {
   useEffect(() => {
     const filteringMemos = () => {
       switch (filter) {
+        case "all":
+          setFilteredMemos(memos.filter((memo) => memo.removed === false));
+          break;
         case "trash":
           setFilteredMemos(memos.filter((memo) => memo.removed === true));
           break;
@@ -42,23 +46,6 @@ const App = () => {
     };
     filteringMemos();
   }, [filter, memos]);
-
-  const handleOnChange = (e) => {
-    setText(e.target.value);
-  };
-
-  const handleOnSubmit = () => {
-    if (!text) return;
-    const newMemo = {
-      value: text,
-      id: new Date().getTime(),
-      checked: false,
-      removed: false,
-    };
-
-    setMemos([newMemo, ...memos]);
-    setText("");
-  };
 
   const handleOnMemo = (obj, key, value) => {
     const deepCopy = memos.map((memo) => ({ ...memo }));
@@ -75,21 +62,7 @@ const App = () => {
     <Container>
       <Header />
       <SlideMenu setFilter={setFilter} />
-
-      <Form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleOnSubmit();
-        }}
-      >
-        <TextInput
-          type="text"
-          value={text}
-          placeholder="Enter Memo"
-          onChange={(e) => handleOnChange(e)}
-        />
-        <AddButton type="submit" value="Add" onSubmit={handleOnSubmit} />
-      </Form>
+      <Modal filter={filter} memos={memos} setMemos={setMemos} show={show} setShow={setShow} />
 
       <MemoArea>
         {filteredMemos.map((memo) => {
@@ -124,35 +97,6 @@ const App = () => {
 export default App;
 
 // CSS
-const Form = styled.form`
-  margin: 1rem;
-  text-align: center;
-  height: rem;
-  display: flex;
-  flex-direction: column;
-`;
-
-const TextInput = styled.textarea`
-  height: 100px;
-  width: 300px;
-  outline: none;
-  margin-bottom: 5px;
-  resize: none;
-`;
-const AddButton = styled.input`
-  width: 100px;
-  margin: 0 auto;
-  background-color: lightblue;
-  border: 1px solid;
-  box-shadow: 0px 3px #bfbfbf;
-  border-radius: 50px;
-  &:active {
-    box-shadow: none;
-    position: relative;
-    top: 3px;
-  }
-`;
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;

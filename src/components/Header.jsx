@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import SlideMenu from "./SlideMenu";
 
+export const Header = () => {
+
+  return (
+    <HeaderWrapper>
+      <SlideMenu />
+    </HeaderWrapper>
+  );
+};
+
 // CSS
 const HeaderWrapper = styled.header`
   align-content: center;
@@ -16,12 +25,3 @@ const HeaderWrapper = styled.header`
   z-index: 100;
   top: 0;
 `;
-
-export const Header = () => {
-
-  return (
-    <HeaderWrapper>
-      <SlideMenu />
-    </HeaderWrapper>
-  );
-};
