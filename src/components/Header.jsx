@@ -14,20 +14,14 @@ const HeaderWrapper = styled.header`
   background-color: beige;
   border-bottom: 1px solid;
   z-index: 100;
-`;
-
-const HeaderTitle = styled.div`
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-left: 75px;
-  padding-top: 7px; 
+  top: 0;
 `;
 
 export const Header = () => {
+
   return (
-  <HeaderWrapper>
-    <SlideMenu />
-    <HeaderTitle>StickyNote</HeaderTitle>
-  </HeaderWrapper>
+    <HeaderWrapper>
+      <SlideMenu />
+    </HeaderWrapper>
   );
 };

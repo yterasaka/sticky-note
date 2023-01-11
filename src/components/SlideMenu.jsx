@@ -1,13 +1,22 @@
 import React from "react";
 import { slide as Menu } from "react-burger-menu";
-import styled from "styled-components";
 import { BsStickies, BsStar, BsTrash } from "react-icons/bs";
+import styled from "styled-components";
 
-const Link = styled.a`
+const Title = styled.p`
+  color: gray;
+  padding: 0 0 1rem 0.5rem;
+`
+const Filter = styled.button`
   color: #373a47;
-  text-decoration: none;
+  border: none;
+  font-size: 1.1rem;
+  background-color: white;
   &:hover {
     opacity: 0.7;
+  }
+  &:active {
+    opacity: 1;
   }
 `;
 
@@ -49,29 +58,41 @@ const styles = {
   },
   bmItemList: {
     color: "#b8b7ad",
+    height: "95%"
   },
   bmItem: {
     marginBottom: "1rem",
-    marginLeft: "1rem"
+    marginLeft: "1rem",
   },
   bmOverlay: {
     top: "0",
-    background: "rgba(0, 0, 0, 0.3)",
+    background: "rgba(0, 0, 0, 0.0)",
   },
 };
 
-const SlideMenu = () => {
+export const SlideMenu = (props) => {
+  const all = () => {
+    props.setFilter("all");
+  };
+  const star = () => {
+    props.setFilter("star");
+  };
+  const trash = () => {
+    props.setFilter("trash");
+  };
+
   return (
     <Menu styles={styles}>
-      <Link id="all" href="/">
+      <Title>StickyNote</Title>
+      <Filter onClick={all}>
         <BsStickies /> All Notes
-      </Link>
-      <Link id="star" href="/">
+      </Filter>
+      <Filter onClick={star}>
         <BsStar /> Star
-      </Link>
-      <Link id="trash" href="/">
+      </Filter>
+      <Filter onClick={trash}>
         <BsTrash /> Trash
-      </Link>
+      </Filter>
     </Menu>
   );
 };
