@@ -62,7 +62,13 @@ const App = () => {
     <Container>
       <Header />
       <SlideMenu setFilter={setFilter} />
-      <Modal filter={filter} memos={memos} setMemos={setMemos} show={show} setShow={setShow} />
+      <Modal
+        filter={filter}
+        memos={memos}
+        setMemos={setMemos}
+        show={show}
+        setShow={setShow}
+      />
 
       <MemoArea>
         {filteredMemos.map((memo) => {
@@ -76,6 +82,7 @@ const App = () => {
               />
               <MemoButton>
                 <MemoCheck
+                  disabled={memo.removed}
                   onClick={() => handleOnMemo(memo, "checked", !memo.checked)}
                 >
                   {memo.checked ? <BsFillStarFill /> : <BsStar />}
