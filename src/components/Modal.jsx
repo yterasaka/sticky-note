@@ -4,7 +4,6 @@ import { BsPencilFill, BsTrashFill, BsFillXCircleFill } from "react-icons/bs";
 
 export const Modal = ({ filter, memos, setMemos, show, setShow }) => {
   const [text, setText] = useState("");
-  const [trash, setTrash] = useState([]);
 
   const handleOnChange = (e) => {
     setText(e.target.value);
@@ -21,7 +20,6 @@ export const Modal = ({ filter, memos, setMemos, show, setShow }) => {
 
     setMemos([newMemo, ...memos]);
     localStorage.setItem("Memos", JSON.stringify([newMemo, ...memos]));
-    // localStorage.setItem("Memos", "sss");
     setText("");
     setShow(false);
   };
@@ -35,8 +33,6 @@ export const Modal = ({ filter, memos, setMemos, show, setShow }) => {
   };
 
   const handleOnRemove = () => {
-
-      // setTrash(memos.filter((memo) => memo.removed === false))
       const allNotes = memos.filter((memo) => memo.removed === false);
       console.log(allNotes);
 
