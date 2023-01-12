@@ -132,6 +132,9 @@ const AddButton = styled.input`
   box-shadow: 0px 3px #bfbfbf;
   border-radius: 50px;
   color: #373a47;
+  &:hover {
+    cursor: pointer;
+  }
   &:active {
     box-shadow: none;
     position: relative;
@@ -141,12 +144,15 @@ const AddButton = styled.input`
 
 const CloseButton = styled.button`
   position: fixed;
-  top: 100px;
+  top: 50px;
   right: 50px;
   background: none;
   border: none;
   color: lightgray;
   font-size: 1.5rem;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const DeleteMessage = styled.div`
@@ -173,6 +179,9 @@ const DeleteButton = styled.button`
   box-shadow: 0px 3px #bfbfbf;
   border-radius: 50px;
   color: #373a47;
+  &:hover {
+    cursor: pointer;
+  }
   &:active {
     box-shadow: none;
     position: relative;
@@ -226,4 +235,5 @@ const ModalView = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
 `;

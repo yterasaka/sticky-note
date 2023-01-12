@@ -6,7 +6,7 @@ import styled from "styled-components";
 const Title = styled.p`
   color: gray;
   padding: 0 0 1rem 0.5rem;
-`
+`;
 const Filter = styled.button`
   color: #373a47;
   border: none;
@@ -58,7 +58,7 @@ const styles = {
   },
   bmItemList: {
     color: "#b8b7ad",
-    height: "95%"
+    height: "95%",
   },
   bmItem: {
     marginBottom: "1rem",

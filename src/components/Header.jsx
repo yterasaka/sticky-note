@@ -22,6 +22,6 @@ const HeaderWrapper = styled.header`
   padding: 0.5rem 1rem;
   background-color: beige;
   border-bottom: 1px solid;
-  z-index: 100;
+  z-index: 1;
   top: 0;
 `;

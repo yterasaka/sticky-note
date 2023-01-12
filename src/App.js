@@ -60,7 +60,7 @@ const App = () => {
 
   return (
     <Container>
-      <Header />
+      <Header disabled={show}/>
       <SlideMenu setFilter={setFilter} />
       <Modal
         filter={filter}
@@ -153,6 +153,9 @@ const MemoCheck = styled.button`
   width: 30px;
   padding: 2px;
   font-size: 1rem;
+  &:hover {
+    cursor: pointer;
+  }
   &:checked {
     color: red;
   }
@@ -166,4 +169,7 @@ const MemoTrash = styled.button`
   width: 30px;
   padding: 2px;
   font-size: 1rem;
+  &:hover {
+    cursor: pointer;
+  }
 `;
