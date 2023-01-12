@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { BsStickies, BsStar, BsTrash } from "react-icons/bs";
 import styled from "styled-components";
@@ -70,7 +70,17 @@ const styles = {
   },
 };
 
-export const SlideMenu = ({setFilter}) => {
+export const SlideMenu = ({ setFilter }) => {
+  const [isOpen, setIsOpen] = useState();
+
+  const handleIsOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeSideBar = () => {
+    setIsOpen(false);
+  };
+
   const all = () => {
     setFilter("all");
   };
@@ -82,15 +92,35 @@ export const SlideMenu = ({setFilter}) => {
   };
 
   return (
-    <Menu styles={styles}>
+    <Menu
+      styles={styles}
+      isOpen={isOpen}
+      onOpen={handleIsOpen}
+      onClose={handleIsOpen}
+    >
       <Title>StickyNote</Title>
-      <FilterButton onClick={all}>
+      <FilterButton
+        onClick={() => {
+          all();
+          closeSideBar();
+        }}
+      >
         <BsStickies /> All Notes
       </FilterButton>
-      <FilterButton onClick={star}>
+      <FilterButton
+        onClick={() => {
+          star();
+          closeSideBar();
+        }}
+      >
         <BsStar /> Star
       </FilterButton>
-      <FilterButton onClick={trash}>
+      <FilterButton
+        onClick={() => {
+          trash();
+          closeSideBar();
+        }}
+      >
         <BsTrash /> Trash
       </FilterButton>
     </Menu>
