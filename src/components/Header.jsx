@@ -2,7 +2,6 @@ import styled from "styled-components";
 import SlideMenu from "./SlideMenu";
 
 export const Header = () => {
-
   return (
     <HeaderWrapper>
       <SlideMenu />

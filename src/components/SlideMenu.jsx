@@ -22,14 +22,16 @@ const FilterButton = styled.button`
 `;
 
 const FilterButtonAll = styled(FilterButton)`
-  background-color: ${({filter}) => (filter === "all" ? "#b0e0e6" : "white")};
-`
+  background-color: ${({ filter }) => (filter === "all" ? "#b0e0e6" : "white")};
+`;
 const FilterButtonStar = styled(FilterButton)`
-  background-color: ${({filter}) => (filter === "star" ? "#b0e0e6" : "white")};
-`
+  background-color: ${({ filter }) =>
+    filter === "star" ? "#b0e0e6" : "white"};
+`;
 const FilterButtonTrash = styled(FilterButton)`
-  background-color: ${({filter}) => (filter === "trash" ? "#b0e0e6" : "white")};
-`
+  background-color: ${({ filter }) =>
+    filter === "trash" ? "#b0e0e6" : "white"};
+`;
 
 const styles = {
   bmBurgerButton: {
@@ -120,7 +122,7 @@ export const SlideMenu = ({ filter, setFilter }) => {
         <BsStickies /> All Notes
       </FilterButtonAll>
       <FilterButtonStar
-      filter={filter}
+        filter={filter}
         onClick={() => {
           star();
           closeSideBar();
@@ -129,7 +131,7 @@ export const SlideMenu = ({ filter, setFilter }) => {
         <BsStar /> Star
       </FilterButtonStar>
       <FilterButtonTrash
-      filter={filter}
+        filter={filter}
         onClick={() => {
           trash();
           closeSideBar();
