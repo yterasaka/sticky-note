@@ -17,9 +17,9 @@ const App = () => {
   const [filteredMemos, setFilteredMemos] = useState([]);
   const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    localStorage.setItem("Memos", JSON.stringify(memos));
-  }, [memos]);
+  // useEffect(() => {
+  //   localStorage.setItem("Memos", JSON.stringify(memos));
+  // }, [memos]);
 
   useEffect(() => {
     const memos = JSON.parse(localStorage.getItem("Memos"));
