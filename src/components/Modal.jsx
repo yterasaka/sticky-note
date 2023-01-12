@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { BsPencilFill, BsTrashFill, BsFillXCircleFill } from "react-icons/bs";
 
-export const Modal = ({ filter, memos, setMemos, show, setShow }) => {
+export const Modal = ({ filter, memos, setMemos, isShow, setIsShow }) => {
   const [text, setText] = useState("");
 
   const handleOnChange = (e) => {
@@ -21,15 +21,15 @@ export const Modal = ({ filter, memos, setMemos, show, setShow }) => {
     setMemos([newMemo, ...memos]);
     localStorage.setItem("Memos", JSON.stringify([newMemo, ...memos]));
     setText("");
-    setShow(false);
+    setIsShow(false);
   };
 
   const closeModal = () => {
-    setShow(false);
+    setIsShow(false);
   };
 
   const openModal = () => {
-    setShow(true);
+    setIsShow(true);
   };
 
   const handleOnRemove = () => {
@@ -38,40 +38,38 @@ export const Modal = ({ filter, memos, setMemos, show, setShow }) => {
 
       setMemos(allNotes);
       localStorage.setItem("Memos", JSON.stringify(allNotes));
-      setShow(false);
+      setIsShow(false);
   };
 
   return (
-    <>
+    <div>
       {filter === "trash" ? (
-        <>
-          <ModalButtonA onClick={(e) => openModal()}>
+        <div>
+          <ModalButtonA onClick={openModal}>
             <BsTrashFill />
           </ModalButtonA>
-          {show ? (
+          {isShow && (
             <ModalView>
-              <CloseButton onClick={() => closeModal()}>
+              <CloseButton onClick={closeModal}>
                 <BsFillXCircleFill />
               </CloseButton>
               <DeleteMessage>
                 <Message>Empty the trash?</Message>
-                <DeleteButton onClick={() => handleOnRemove()}>
+                <DeleteButton onClick={handleOnRemove}>
                   Delete
                 </DeleteButton>
               </DeleteMessage>
             </ModalView>
-          ) : (
-            <></>
           )}
-        </>
+        </div>
       ) : (
-        <>
-          <ModalButtonB onClick={() => openModal()}>
+        <div>
+          <ModalButtonB onClick={openModal}>
             <BsPencilFill />
           </ModalButtonB>
-          {show ? (
+          {isShow && (
             <ModalView>
-              <CloseButton onClick={() => closeModal()}>
+              <CloseButton onClick={closeModal}>
                 <BsFillXCircleFill />
               </CloseButton>
               <Form
@@ -93,12 +91,12 @@ export const Modal = ({ filter, memos, setMemos, show, setShow }) => {
                 />
               </Form>
             </ModalView>
-          ) : (
-            <></>
           )}
-        </>
+        </div>
       )}
-    </>
+    </div>
+
+    
   );
 };
 

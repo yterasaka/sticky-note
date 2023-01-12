@@ -7,7 +7,7 @@ const Title = styled.p`
   color: gray;
   padding: 0 0 1rem 0.5rem;
 `;
-const Filter = styled.button`
+const FilterButton = styled.button`
   color: #373a47;
   border: none;
   font-size: 1.1rem;
@@ -70,29 +70,29 @@ const styles = {
   },
 };
 
-export const SlideMenu = (props) => {
+export const SlideMenu = ({setFilter}) => {
   const all = () => {
-    props.setFilter("all");
+    setFilter("all");
   };
   const star = () => {
-    props.setFilter("star");
+    setFilter("star");
   };
   const trash = () => {
-    props.setFilter("trash");
+    setFilter("trash");
   };
 
   return (
     <Menu styles={styles}>
       <Title>StickyNote</Title>
-      <Filter onClick={all}>
+      <FilterButton onClick={all}>
         <BsStickies /> All Notes
-      </Filter>
-      <Filter onClick={star}>
+      </FilterButton>
+      <FilterButton onClick={star}>
         <BsStar /> Star
-      </Filter>
-      <Filter onClick={trash}>
+      </FilterButton>
+      <FilterButton onClick={trash}>
         <BsTrash /> Trash
-      </Filter>
+      </FilterButton>
     </Menu>
   );
 };

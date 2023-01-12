@@ -15,7 +15,7 @@ const App = () => {
   const [memos, setMemos] = useState([]);
   const [filter, setFilter] = useState("all");
   const [filteredMemos, setFilteredMemos] = useState([]);
-  const [show, setShow] = useState(false);
+  const [isShow, setIsShow] = useState(false);
 
   useEffect(() => {
     const memos = JSON.parse(localStorage.getItem("Memos"));
@@ -43,7 +43,7 @@ const App = () => {
     filteringMemos();
   }, [filter, memos]);
 
-  const handleOnMemo = (obj, key, value) => {
+  const handleOnEdit = (obj, key, value) => {
     const deepCopy = memos.map((memo) => ({ ...memo }));
     const newMemos = deepCopy.map((memo) => {
       if (memo.id === obj.id) {
@@ -57,14 +57,14 @@ const App = () => {
 
   return (
     <Container>
-      <Header disabled={show}/>
+      <Header disabled={isShow}/>
       <SlideMenu setFilter={setFilter} />
       <Modal
         filter={filter}
         memos={memos}
         setMemos={setMemos}
-        show={show}
-        setShow={setShow}
+        isShow={isShow}
+        setIsShow={setIsShow}
       />
 
       <MemoArea>
@@ -75,17 +75,17 @@ const App = () => {
                 type="text"
                 disabled={memo.removed}
                 value={memo.value}
-                onChange={(e) => handleOnMemo(memo, "value", e.target.value)}
+                onChange={(e) => handleOnEdit(memo, "value", e.target.value)}
               />
               <MemoButton>
                 <MemoCheck
                   disabled={memo.removed}
-                  onClick={() => handleOnMemo(memo, "checked", !memo.checked)}
+                  onClick={() => handleOnEdit(memo, "checked", !memo.checked)}
                 >
                   {memo.checked ? <BsFillStarFill /> : <BsStar />}
                 </MemoCheck>
                 <MemoTrash
-                  onClick={() => handleOnMemo(memo, "removed", !memo.removed)}
+                  onClick={() => handleOnEdit(memo, "removed", !memo.removed)}
                 >
                   {memo.removed ? <BsArrowCounterclockwise /> : <BsTrash />}
                 </MemoTrash>
