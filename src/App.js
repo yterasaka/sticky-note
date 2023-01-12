@@ -58,7 +58,7 @@ const App = () => {
   return (
     <Container>
       <Header disabled={isShow}/>
-      <SlideMenu setFilter={setFilter} />
+      <SlideMenu filter={filter} setFilter={setFilter} />
       <Modal
         filter={filter}
         memos={memos}
