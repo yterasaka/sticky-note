@@ -3,6 +3,7 @@ import { slide as Menu } from "react-burger-menu";
 import { BsStickies, BsStar, BsTrash } from "react-icons/bs";
 import styled from "styled-components";
 
+// CSS
 const Title = styled.p`
   color: gray;
   padding: 0 0 1rem 0.5rem;
@@ -15,6 +16,7 @@ const FilterButton = styled.button`
   border-radius: 10px;
   &:hover {
     opacity: 0.7;
+    cursor: pointer;
   }
   &:active {
     opacity: 1;
@@ -79,7 +81,7 @@ const styles = {
   },
   bmOverlay: {
     top: "0",
-    background: "rgba(0, 0, 0, 0.0)",
+    background: "rgba(0, 0, 0, 0.2)",
   },
 };
 
@@ -90,18 +92,17 @@ export const SlideMenu = ({ filter, setFilter }) => {
     setIsOpen(!isOpen);
   };
 
-  const closeSideBar = () => {
-    setIsOpen(false);
-  };
-
   const all = () => {
     setFilter("all");
+    setIsOpen(false);
   };
   const star = () => {
     setFilter("star");
+    setIsOpen(false);
   };
   const trash = () => {
     setFilter("trash");
+    setIsOpen(false);
   };
 
   return (
@@ -112,31 +113,13 @@ export const SlideMenu = ({ filter, setFilter }) => {
       onClose={handleIsOpen}
     >
       <Title>StickyNote</Title>
-      <FilterButtonAll
-        filter={filter}
-        onClick={() => {
-          all();
-          closeSideBar();
-        }}
-      >
+      <FilterButtonAll filter={filter} onClick={all}>
         <BsStickies /> All Notes
       </FilterButtonAll>
-      <FilterButtonStar
-        filter={filter}
-        onClick={() => {
-          star();
-          closeSideBar();
-        }}
-      >
+      <FilterButtonStar filter={filter} onClick={star}>
         <BsStar /> Star
       </FilterButtonStar>
-      <FilterButtonTrash
-        filter={filter}
-        onClick={() => {
-          trash();
-          closeSideBar();
-        }}
-      >
+      <FilterButtonTrash filter={filter} onClick={trash}>
         <BsTrash /> Trash
       </FilterButtonTrash>
     </Menu>

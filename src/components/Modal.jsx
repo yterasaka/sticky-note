@@ -2,108 +2,6 @@ import { useState } from "react";
 import styled from "styled-components";
 import { BsPencilFill, BsTrashFill, BsFillXCircleFill } from "react-icons/bs";
 
-export const Modal = ({ filter, setFilter, memos, setMemos, isShow, setIsShow }) => {
-  const [text, setText] = useState("");
-
-  const handleOnChange = (e) => {
-    setText(e.target.value);
-  };
-
-  const handleOnSubmit = () => {
-    if (!text) return;
-    const newMemo = {
-      value: text,
-      id: new Date().getTime(),
-      checked: false,
-      removed: false,
-    };
-
-    setMemos([newMemo, ...memos]);
-    localStorage.setItem("Memos", JSON.stringify([newMemo, ...memos]));
-    setText("");
-    setIsShow(false);
-  };
-
-  const closeModal = () => {
-    setIsShow(false);
-  };
-
-  const openModal = () => {
-    setIsShow(true);
-  };
-
-  const handleOnRemove = () => {
-      const allNotes = memos.filter((memo) => memo.removed === false);
-
-      setMemos(allNotes);
-      localStorage.setItem("Memos", JSON.stringify(allNotes));
-      setIsShow(false);
-      setFilter('all');
-  };
-
-  // const all = () => {
-  //   setFilter("all");
-  // };
-
-  return (
-    <div>
-      {filter === "trash" ? (
-        <div>
-          <ModalButtonA onClick={openModal}>
-            <BsTrashFill />
-          </ModalButtonA>
-          {isShow && (
-            <ModalView>
-              <CloseButton onClick={closeModal}>
-                <BsFillXCircleFill />
-              </CloseButton>
-              <DeleteMessage>
-                <Message>Empty the trash?</Message>
-                <DeleteButton onClick={handleOnRemove}>
-                  Delete
-                </DeleteButton>
-              </DeleteMessage>
-            </ModalView>
-          )}
-        </div>
-      ) : (
-        <div>
-          <ModalButtonB onClick={openModal}>
-            <BsPencilFill />
-          </ModalButtonB>
-          {isShow && (
-            <ModalView>
-              <CloseButton onClick={closeModal}>
-                <BsFillXCircleFill />
-              </CloseButton>
-              <Form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  handleOnSubmit();
-                }}
-              >
-                <TextInput
-                  type="text"
-                  value={text}
-                  placeholder="Enter Memo"
-                  onChange={(e) => handleOnChange(e)}
-                />
-                <AddButton
-                  type="submit"
-                  value="Add"
-                  onSubmit={handleOnSubmit}
-                />
-              </Form>
-            </ModalView>
-          )}
-        </div>
-      )}
-    </div>
-
-    
-  );
-};
-
 // CSS
 const Form = styled.form`
   margin: 1rem;
@@ -190,8 +88,7 @@ const DeleteButton = styled.button`
     top: 3px;
   }
 `;
-
-const ModalButtonA = styled.button`
+const ModalButton = styled.button`
   position: fixed;
   right: 30px;
   bottom: 30px;
@@ -200,31 +97,19 @@ const ModalButtonA = styled.button`
   border: none;
   width: 40px;
   height: 40px;
-  background-color: #cd5c5c;
   color: white;
   text-decoration: none;
   font-size: 1.1rem;
   &:hover {
     opacity: 0.7;
+    cursor: pointer;
   }
 `;
-
-const ModalButtonB = styled.button`
-  position: fixed;
-  right: 30px;
-  bottom: 30px;
-  border-radius: 50px;
-  padding-top: 3px;
-  border: none;
-  width: 40px;
-  height: 40px;
+const ModalButtonA = styled(ModalButton)`
+  background-color: #cd5c5c;
+`;
+const ModalButtonB = styled(ModalButton)`
   background-color: #6495ed;
-  color: white;
-  text-decoration: none;
-  font-size: 1.1rem;
-  &:hover {
-    opacity: 0.7;
-  }
 `;
 
 const ModalView = styled.div`
@@ -239,3 +124,103 @@ const ModalView = styled.div`
   justify-content: center;
   z-index: 1000;
 `;
+
+export const Modal = ({
+  filter,
+  setFilter,
+  memos,
+  setMemos,
+  isShow,
+  setIsShow,
+}) => {
+  const [text, setText] = useState("");
+
+  const handleOnChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleOnSubmit = () => {
+    if (!text) return;
+    const newMemo = {
+      value: text,
+      id: new Date().getTime(),
+      checked: false,
+      removed: false,
+    };
+
+    setMemos([newMemo, ...memos]);
+    localStorage.setItem("Memos", JSON.stringify([newMemo, ...memos]));
+    setText("");
+    setIsShow(false);
+  };
+
+  const closeModal = () => {
+    setIsShow(false);
+  };
+
+  const openModal = () => {
+    setIsShow(true);
+  };
+
+  const handleOnRemove = () => {
+    const allNotes = memos.filter((memo) => memo.removed === false);
+    setMemos(allNotes);
+    localStorage.setItem("Memos", JSON.stringify(allNotes));
+    setIsShow(false);
+    setFilter("all");
+  };
+
+  return (
+    <div>
+      {filter === "trash" ? (
+        <div>
+          <ModalButtonA onClick={openModal}>
+            <BsTrashFill />
+          </ModalButtonA>
+          {isShow && (
+            <ModalView>
+              <CloseButton onClick={closeModal}>
+                <BsFillXCircleFill />
+              </CloseButton>
+              <DeleteMessage>
+                <Message>Empty the trash?</Message>
+                <DeleteButton onClick={handleOnRemove}>Delete</DeleteButton>
+              </DeleteMessage>
+            </ModalView>
+          )}
+        </div>
+      ) : (
+        <div>
+          <ModalButtonB onClick={openModal}>
+            <BsPencilFill />
+          </ModalButtonB>
+          {isShow && (
+            <ModalView>
+              <CloseButton onClick={closeModal}>
+                <BsFillXCircleFill />
+              </CloseButton>
+              <Form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleOnSubmit();
+                }}
+              >
+                <TextInput
+                  type="text"
+                  value={text}
+                  placeholder="Enter Memo"
+                  onChange={(e) => handleOnChange(e)}
+                />
+                <AddButton
+                  type="submit"
+                  value="Add"
+                  onSubmit={handleOnSubmit}
+                />
+              </Form>
+            </ModalView>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};

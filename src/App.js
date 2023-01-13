@@ -8,98 +8,7 @@ import {
 } from "react-icons/bs";
 
 import { Header } from "./components/Header";
-import SlideMenu from "./components/SlideMenu";
 import { Modal } from "./components/Modal";
-
-const App = () => {
-  const [memos, setMemos] = useState([]);
-  const [filter, setFilter] = useState("all");
-  const [filteredMemos, setFilteredMemos] = useState([]);
-  const [isShow, setIsShow] = useState(false);
-
-  useEffect(() => {
-    const memos = JSON.parse(localStorage.getItem("Memos"));
-    if (memos) {
-      setMemos(memos);
-    }
-  }, []);
-
-  useEffect(() => {
-    const filteringMemos = () => {
-      switch (filter) {
-        case "all":
-          setFilteredMemos(memos.filter((memo) => memo.removed === false));
-          break;
-        case "trash":
-          setFilteredMemos(memos.filter((memo) => memo.removed === true));
-          break;
-        case "star":
-          setFilteredMemos(memos.filter((memo) => memo.checked === true));
-          break;
-        default:
-          setFilteredMemos(memos);
-      }
-    };
-    filteringMemos();
-  }, [filter, memos]);
-
-  const handleOnEdit = (obj, key, value) => {
-    const deepCopy = memos.map((memo) => ({ ...memo }));
-    const newMemos = deepCopy.map((memo) => {
-      if (memo.id === obj.id) {
-        memo[key] = value;
-      }
-      return memo;
-    });
-    setMemos(newMemos);
-    localStorage.setItem("Memos", JSON.stringify(newMemos));
-  };
-
-  return (
-    <Container>
-      <Header disabled={isShow} />
-      <SlideMenu filter={filter} setFilter={setFilter} />
-      <Modal
-        filter={filter}
-        setFilter={setFilter}
-        memos={memos}
-        setMemos={setMemos}
-        isShow={isShow}
-        setIsShow={setIsShow}
-      />
-
-      <MemoArea>
-        {filteredMemos.map((memo) => {
-          return (
-            <MemoItem key={memo.id}>
-              <MemoText
-                type="text"
-                disabled={memo.removed}
-                value={memo.value}
-                onChange={(e) => handleOnEdit(memo, "value", e.target.value)}
-              />
-              <MemoButton>
-                <MemoCheck
-                  disabled={memo.removed}
-                  onClick={() => handleOnEdit(memo, "checked", !memo.checked)}
-                >
-                  {memo.checked ? <BsFillStarFill /> : <BsStar />}
-                </MemoCheck>
-                <MemoTrash
-                  onClick={() => handleOnEdit(memo, "removed", !memo.removed)}
-                >
-                  {memo.removed ? <BsArrowCounterclockwise /> : <BsTrash />}
-                </MemoTrash>
-              </MemoButton>
-            </MemoItem>
-          );
-        })}
-      </MemoArea>
-    </Container>
-  );
-};
-
-export default App;
 
 // CSS
 const Container = styled.div`
@@ -171,3 +80,92 @@ const MemoTrash = styled.button`
     cursor: pointer;
   }
 `;
+
+const App = () => {
+  const [memos, setMemos] = useState([]);
+  const [filter, setFilter] = useState("all");
+  const [filteredMemos, setFilteredMemos] = useState([]);
+  const [isShow, setIsShow] = useState(false);
+
+  useEffect(() => {
+    const memos = JSON.parse(localStorage.getItem("Memos"));
+    if (memos) {
+      setMemos(memos);
+    }
+  }, []);
+
+  useEffect(() => {
+    const filteringMemos = () => {
+      switch (filter) {
+        case "all":
+          setFilteredMemos(memos.filter((memo) => memo.removed === false));
+          break;
+        case "trash":
+          setFilteredMemos(memos.filter((memo) => memo.removed === true));
+          break;
+        case "star":
+          setFilteredMemos(memos.filter((memo) => memo.checked === true));
+          break;
+        default:
+          setFilteredMemos(memos);
+      }
+    };
+    filteringMemos();
+  }, [filter, memos]);
+
+  const handleOnEdit = (obj, key, value) => {
+    const deepCopy = memos.map((memo) => ({ ...memo }));
+    const newMemos = deepCopy.map((memo) => {
+      if (memo.id === obj.id) {
+        memo[key] = value;
+      }
+      return memo;
+    });
+    setMemos(newMemos);
+    localStorage.setItem("Memos", JSON.stringify(newMemos));
+  };
+
+  return (
+    <Container>
+      <Header disabled={isShow} filter={filter} setFilter={setFilter} />
+      <Modal
+        filter={filter}
+        setFilter={setFilter}
+        memos={memos}
+        setMemos={setMemos}
+        isShow={isShow}
+        setIsShow={setIsShow}
+      />
+
+      <MemoArea>
+        {filteredMemos.map((memo) => {
+          return (
+            <MemoItem key={memo.id}>
+              <MemoText
+                type="text"
+                disabled={memo.removed}
+                value={memo.value}
+                onChange={(e) => handleOnEdit(memo, "value", e.target.value)}
+              />
+              <MemoButton>
+                <MemoCheck
+                  disabled={memo.removed}
+                  onClick={() => handleOnEdit(memo, "checked", !memo.checked)}
+                >
+                  {memo.checked ? <BsFillStarFill /> : <BsStar />}
+                </MemoCheck>
+                <MemoTrash
+                  onClick={() => handleOnEdit(memo, "removed", !memo.removed)}
+                >
+                  {memo.removed ? <BsArrowCounterclockwise /> : <BsTrash />}
+                </MemoTrash>
+              </MemoButton>
+            </MemoItem>
+          );
+        })}
+      </MemoArea>
+    </Container>
+  );
+};
+
+export default App;
