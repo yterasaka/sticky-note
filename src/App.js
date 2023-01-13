@@ -104,7 +104,7 @@ const App = () => {
           setFilteredMemos(memos.filter((memo) => memo.removed === true));
           break;
         case "star":
-          setFilteredMemos(memos.filter((memo) => memo.checked === true));
+          setFilteredMemos(memos.filter((memo) => memo.checked === true && memo.removed === false));
           break;
         default:
           setFilteredMemos(memos);
