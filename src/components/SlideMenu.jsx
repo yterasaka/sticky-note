@@ -1,23 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { BsStickies, BsStar, BsTrash } from "react-icons/bs";
 import styled from "styled-components";
 
+// CSS
 const Title = styled.p`
   color: gray;
   padding: 0 0 1rem 0.5rem;
 `;
-const Filter = styled.button`
+const FilterButton = styled.button`
   color: #373a47;
   border: none;
   font-size: 1.1rem;
-  background-color: white;
+  padding: 3px 10px;
+  border-radius: 10px;
   &:hover {
     opacity: 0.7;
+    cursor: pointer;
   }
   &:active {
     opacity: 1;
   }
+`;
+
+const FilterButtonAll = styled(FilterButton)`
+  background-color: ${({ filter }) => (filter === "all" ? "#b0e0e6" : "white")};
+`;
+const FilterButtonStar = styled(FilterButton)`
+  background-color: ${({ filter }) =>
+    filter === "star" ? "#b0e0e6" : "white"};
+`;
+const FilterButtonTrash = styled(FilterButton)`
+  background-color: ${({ filter }) =>
+    filter === "trash" ? "#b0e0e6" : "white"};
 `;
 
 const styles = {
@@ -66,33 +81,47 @@ const styles = {
   },
   bmOverlay: {
     top: "0",
-    background: "rgba(0, 0, 0, 0.0)",
+    background: "rgba(0, 0, 0, 0.2)",
   },
 };
 
-export const SlideMenu = (props) => {
+export const SlideMenu = ({ filter, setFilter }) => {
+  const [isOpen, setIsOpen] = useState();
+
+  const handleIsOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
   const all = () => {
-    props.setFilter("all");
+    setFilter("all");
+    setIsOpen(false);
   };
   const star = () => {
-    props.setFilter("star");
+    setFilter("star");
+    setIsOpen(false);
   };
   const trash = () => {
-    props.setFilter("trash");
+    setFilter("trash");
+    setIsOpen(false);
   };
 
   return (
-    <Menu styles={styles}>
+    <Menu
+      styles={styles}
+      isOpen={isOpen}
+      onOpen={handleIsOpen}
+      onClose={handleIsOpen}
+    >
       <Title>StickyNote</Title>
-      <Filter onClick={all}>
+      <FilterButtonAll filter={filter} onClick={all}>
         <BsStickies /> All Notes
-      </Filter>
-      <Filter onClick={star}>
+      </FilterButtonAll>
+      <FilterButtonStar filter={filter} onClick={star}>
         <BsStar /> Star
-      </Filter>
-      <Filter onClick={trash}>
+      </FilterButtonStar>
+      <FilterButtonTrash filter={filter} onClick={trash}>
         <BsTrash /> Trash
-      </Filter>
+      </FilterButtonTrash>
     </Menu>
   );
 };
