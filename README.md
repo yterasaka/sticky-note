@@ -6,6 +6,8 @@ This is a simple web application for taking notes in the style of Google Keep.
 
 With "StickyNote" you create virtual sticky notes on your browser.
 
+Demo: https://yterasaka.github.io/sticky-note/
+
 ![StickyNote](image/StickyNoteImage1.jpg)
 ![StickyNote](image/StickyNoteImage2.jpg)
 
