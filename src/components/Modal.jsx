@@ -58,6 +58,7 @@ export const Modal = ({
     localStorage.setItem("Memos", JSON.stringify([newMemo, ...memos]));
     setText("");
     setIsShow(false);
+    setFilter("all");
   };
 
   const closeModal = () => {
