@@ -23,9 +23,10 @@ With "StickyNote" you create virtual sticky notes on your browser.
 # Future features
 
 I will be adding more function.
-- [ ] Change the size of sticky notes depending on the length of the memo
 - [ ] Edit memos on modal screen
+- [ ] Display tooltips on mouse hover for each button
 - [ ] Animate the movement of sticky notes when adding or deleting a note
+- [ ] Change the size of sticky notes depending on the length of the memo
 - [ ] Reordering of memos
 - [ ] Add search functionality
 
