@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { BsPencilFill, BsTrashFill, BsFillXCircleFill } from "react-icons/bs";
 
-export const Modal = ({ filter, memos, setMemos, isShow, setIsShow }) => {
+export const Modal = ({ filter, setFilter, memos, setMemos, isShow, setIsShow }) => {
   const [text, setText] = useState("");
 
   const handleOnChange = (e) => {
@@ -34,12 +34,16 @@ export const Modal = ({ filter, memos, setMemos, isShow, setIsShow }) => {
 
   const handleOnRemove = () => {
       const allNotes = memos.filter((memo) => memo.removed === false);
-      console.log(allNotes);
 
       setMemos(allNotes);
       localStorage.setItem("Memos", JSON.stringify(allNotes));
       setIsShow(false);
+      setFilter('all');
   };
+
+  // const all = () => {
+  //   setFilter("all");
+  // };
 
   return (
     <div>

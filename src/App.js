@@ -61,6 +61,7 @@ const App = () => {
       <SlideMenu filter={filter} setFilter={setFilter} />
       <Modal
         filter={filter}
+        setFilter={setFilter}
         memos={memos}
         setMemos={setMemos}
         isShow={isShow}
