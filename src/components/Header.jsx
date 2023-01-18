@@ -21,12 +21,12 @@ const HeaderWrapper = styled.header`
 `;
 
 const Logo = styled.img`
-  margin: 0 auto;
   padding: 0.2rem;
-  position: fixed;
+  position: absolute;
   height: 4rem;
-  right: 50%;
+  top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
 `;
 const FilterMenu = styled.div`
   margin: auto 10px;
@@ -75,6 +75,7 @@ const LinkButton = styled.a`
     cursor: pointer;
   }
 `
+
 
 export const Header = ({ filter, setFilter }) => {
   // const [isOpen, setIsOpen] = useState();
