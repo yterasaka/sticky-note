@@ -24,15 +24,15 @@ const FilterButton = styled.button`
 `;
 
 const FilterButtonAll = styled(FilterButton)`
-  background-color: ${({ filter }) => (filter === "all" ? "#b0e0e6" : "white")};
+  background-color: ${({ filter }) => (filter === "all" ? "#87CEFA" : "white")};
 `;
 const FilterButtonStar = styled(FilterButton)`
   background-color: ${({ filter }) =>
-    filter === "star" ? "#b0e0e6" : "white"};
+    filter === "star" ? "#87CEFA" : "white"};
 `;
 const FilterButtonTrash = styled(FilterButton)`
   background-color: ${({ filter }) =>
-    filter === "trash" ? "#b0e0e6" : "white"};
+    filter === "trash" ? "#FFB6C1" : "white"};
 `;
 
 const styles = {
@@ -59,7 +59,7 @@ const styles = {
   bmMenuWrap: {
     position: "fixed",
     height: "100%",
-    width: "250px",
+    width: "200px",
     top: "0",
     left: "0",
   },

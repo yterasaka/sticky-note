@@ -6,9 +6,8 @@ import { ModalNewMemo } from "./ModalNewMemo";
 
 // CSS
 export const CloseButton = styled.button`
-  position: fixed;
-  top: 50px;
-  right: 50px;
+  text-align: right;
+  margin-right: -10px;
   background: none;
   border: none;
   color: lightgray;
