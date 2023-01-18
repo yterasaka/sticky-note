@@ -102,10 +102,10 @@ export const Header = ({ filter, setFilter }) => {
       <Mobile>
         <SlideMenu filter={filter} setFilter={setFilter} />
         <LinkButtonMenu>
-          <LinkButton hrem="/">
+          <LinkButton href="https://github.com/yterasaka">
             <AiFillGithub />
           </LinkButton>
-          <LinkButton hrem="/">
+          <LinkButton href="https://www.linkedin.com/in/yuki-terasaka-a5399b129/">
             <AiFillLinkedin />
           </LinkButton>
         </LinkButtonMenu>
@@ -125,10 +125,10 @@ export const Header = ({ filter, setFilter }) => {
         </FilterMenu>
         <Logo src={logo} alt="image" />
         <LinkButtonMenu>
-          <LinkButton hrem="/">
+          <LinkButton href="https://github.com/yterasaka">
             <AiFillGithub />
           </LinkButton>
-          <LinkButton hrem="/">
+          <LinkButton href="https://www.linkedin.com/in/yuki-terasaka-a5399b129/">
             <AiFillLinkedin />
           </LinkButton>
         </LinkButtonMenu>
