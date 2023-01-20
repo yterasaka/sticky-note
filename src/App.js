@@ -9,6 +9,7 @@ import {
 
 import { Header } from "./components/Header";
 import { Modal } from "./components/Modal";
+import { media } from "./utils/constants"
 
 // CSS
 const Container = styled.div`
@@ -24,6 +25,14 @@ const MemoArea = styled.ul`
   justify-content: center;
   width: 80%;
   padding: 0;
+
+  ${media.tablet`
+    width: 90%;
+    `}
+
+  ${media.phone`
+    width: 100%;
+    `}
 `;
 
 const MemoItem = styled.li`
@@ -37,6 +46,16 @@ const MemoItem = styled.li`
   background-color: beige;
   display: flex;
   flex-direction: column;
+
+  ${media.tablet`
+    width: 170px;
+    height: 170px;
+    `}
+
+  ${media.phone`
+    width: 120px;
+    height: 120px;
+    `}
 `;
 
 const MemoText = styled.textarea`
