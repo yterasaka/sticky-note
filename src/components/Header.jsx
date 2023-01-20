@@ -86,15 +86,9 @@ export const Header = ({ filter, setFilter }) => {
     return isMobile ? children : null;
   };
 
-  const all = () => {
-    setFilter("all");
-  };
-  const star = () => {
-    setFilter("star");
-  };
-  const trash = () => {
-    setFilter("trash");
-  };
+  const handleFilter = (t) => {
+    setFilter(t);
+  }
 
   return (
     <HeaderWrapper>
@@ -113,13 +107,13 @@ export const Header = ({ filter, setFilter }) => {
       {/* Desktop */}
       <Desktop>
         <FilterMenu>
-          <FilterButtonAll filter={filter} onClick={all}>
+          <FilterButtonAll filter={filter} onClick={() => handleFilter("all")}>
             <BsStickies /> All Notes
           </FilterButtonAll>
-          <FilterButtonStar filter={filter} onClick={star}>
+          <FilterButtonStar filter={filter} onClick={() => handleFilter("star")}>
             <BsStar /> Star
           </FilterButtonStar>
-          <FilterButtonTrash filter={filter} onClick={trash}>
+          <FilterButtonTrash filter={filter} onClick={() => handleFilter("trash")}>
             <BsTrash /> Trash
           </FilterButtonTrash>
         </FilterMenu>
