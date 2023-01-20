@@ -148,9 +148,11 @@ const App = () => {
             <MemoItem key={memo.id}>
               <MemoText
                 type="text"
-                disabled={memo.removed}
+                disabled
+                // disabled={memo.removed}
                 value={memo.value}
                 onChange={(e) => handleOnEdit(memo, "value", e.target.value)}
+                onClick={() => console.log("test")}
               />
               <MemoButton>
                 <MemoCheck

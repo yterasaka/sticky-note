@@ -18,6 +18,7 @@ const ModalButtonB = styled.button`
   text-decoration: none;
   font-size: 1.1rem;
   background-color: #6495ed;
+  -webkit-appearance: none;
   &:hover {
     opacity: 0.7;
     cursor: pointer;

@@ -62,6 +62,7 @@ export const Modal = ({
 
   const closeModal = () => {
     setIsShow(false);
+    setText("");
   };
 
   const openModal = () => {
