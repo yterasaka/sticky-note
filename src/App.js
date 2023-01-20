@@ -23,6 +23,7 @@ const MemoArea = styled.ul`
   flex-wrap: wrap;
   justify-content: center;
   width: 80%;
+  padding: 0;
 `;
 
 const MemoItem = styled.li`
@@ -104,7 +105,11 @@ const App = () => {
           setFilteredMemos(memos.filter((memo) => memo.removed === true));
           break;
         case "star":
-          setFilteredMemos(memos.filter((memo) => memo.checked === true && memo.removed === false));
+          setFilteredMemos(
+            memos.filter(
+              (memo) => memo.checked === true && memo.removed === false
+            )
+          );
           break;
         default:
           setFilteredMemos(memos);

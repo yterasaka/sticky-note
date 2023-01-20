@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BsTrashFill, BsFillXCircleFill } from "react-icons/bs";
+import { BsTrashFill, BsX } from "react-icons/bs";
 import { ModalView, CloseButton } from "./Modal";
 
 // CSS
@@ -24,11 +24,14 @@ const ModalButtonA = styled.button`
 const DeleteMessage = styled.div`
   margin: 1rem;
   text-align: center;
-  height: rem;
+  height: 150px;
+  width: 250px;
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  padding: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
   border-radius: 10px;
 `;
 const Message = styled.div`
@@ -66,10 +69,10 @@ export const ModalDeleteMemo = ({
       </ModalButtonA>
       {isShow && (
         <ModalView>
-          <CloseButton onClick={closeModal}>
-            <BsFillXCircleFill />
-          </CloseButton>
           <DeleteMessage>
+            <CloseButton onClick={closeModal}>
+              <BsX />
+            </CloseButton>
             <Message>Empty the trash?</Message>
             <DeleteButton onClick={handleOnRemove}>Delete</DeleteButton>
           </DeleteMessage>

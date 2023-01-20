@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { BsStickies, BsStar, BsTrash } from "react-icons/bs";
 import styled from "styled-components";
+import logo from "../image/logo_transparent.png";
 
 // CSS
-const Title = styled.p`
-  color: gray;
-  padding: 0 0 1rem 0.5rem;
-`;
 const FilterButton = styled.button`
   color: #373a47;
   border: none;
@@ -24,16 +21,21 @@ const FilterButton = styled.button`
 `;
 
 const FilterButtonAll = styled(FilterButton)`
-  background-color: ${({ filter }) => (filter === "all" ? "#b0e0e6" : "white")};
+  background-color: ${({ filter }) => (filter === "all" ? "#87CEFA" : "white")};
 `;
 const FilterButtonStar = styled(FilterButton)`
   background-color: ${({ filter }) =>
-    filter === "star" ? "#b0e0e6" : "white"};
+    filter === "star" ? "#87CEFA" : "white"};
 `;
 const FilterButtonTrash = styled(FilterButton)`
   background-color: ${({ filter }) =>
-    filter === "trash" ? "#b0e0e6" : "white"};
+    filter === "trash" ? "#FFB6C1" : "white"};
 `;
+
+const Logo = styled.img`
+  width: 100px;
+  padding-bottom: 20px;
+`
 
 const styles = {
   bmBurgerButton: {
@@ -59,7 +61,7 @@ const styles = {
   bmMenuWrap: {
     position: "fixed",
     height: "100%",
-    width: "250px",
+    width: "200px",
     top: "0",
     left: "0",
   },
@@ -112,7 +114,7 @@ export const SlideMenu = ({ filter, setFilter }) => {
       onOpen={handleIsOpen}
       onClose={handleIsOpen}
     >
-      <Title>StickyNote</Title>
+      <Logo src={logo} alt="image" />
       <FilterButtonAll filter={filter} onClick={all}>
         <BsStickies /> All Notes
       </FilterButtonAll>

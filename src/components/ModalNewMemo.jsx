@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BsPencilFill, BsFillXCircleFill } from "react-icons/bs";
+import { BsPencilFill, BsX } from "react-icons/bs";
 import { ModalView, CloseButton } from "./Modal";
 
 // CSS
@@ -28,16 +28,30 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  padding: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 15px;
   border-radius: 10px;
 `;
 const TextInput = styled.textarea`
-  height: 150px;
-  width: 300px;
+  height: 200px;
+  width: 350px;
   outline: none;
   margin-bottom: 5px;
   resize: none;
   border: none;
+  // Tablet
+  @media (max-width: 1024px) {
+    height: 250px;
+    width: 60vw;
+    font-size: large;
+  }
+  // Mobile
+  @media (max-width: 767px) {
+    height: 250px;
+    width: 70vw;
+    font-size: large;
+  }
 `;
 
 const AddButton = styled.input`
@@ -74,15 +88,15 @@ export const ModalNewMemo = ({
       </ModalButtonB>
       {isShow && (
         <ModalView>
-          <CloseButton onClick={closeModal}>
-            <BsFillXCircleFill />
-          </CloseButton>
           <Form
             onSubmit={(e) => {
               e.preventDefault();
               handleOnSubmit();
             }}
           >
+            <CloseButton onClick={closeModal}>
+              <BsX />
+            </CloseButton>
             <TextInput
               type="text"
               value={text}
