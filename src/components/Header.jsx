@@ -1,9 +1,10 @@
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 import { BsStickies, BsStar, BsTrash, BsPencilSquare } from "react-icons/bs";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import logo from "../image/logo_transparent.png";
 import SlideMenu from "./SlideMenu";
+import { Desktop, Mobile } from "../utils/constants";
 
 // CSS
 const HeaderWrapper = styled.header`
@@ -89,15 +90,15 @@ const LinkButton = styled.a`
 `;
 
 export const Header = ({ filter, setFilter }) => {
-  const Desktop = ({ children }) => {
-    const isDesktop = useMediaQuery({ minWidth: 1025 });
-    return isDesktop ? children : null;
-  };
+    //   const Desktop = ({ children }) => {
+    //     const isDesktop = useMediaQuery({ minWidth: 1025 });
+    //     return isDesktop ? children : null;
+    //   };
 
-  const Mobile = ({ children }) => {
-    const isMobile = useMediaQuery({ maxWidth: 1024 });
-    return isMobile ? children : null;
-  };
+    // const Mobile = ({ children }) => {
+    //   const isMobile = useMediaQuery({ maxWidth: 1024 });
+    //   return isMobile ? children : null;
+    // };
 
   const handleFilter = (t) => {
     setFilter(t);
