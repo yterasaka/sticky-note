@@ -77,12 +77,12 @@ const LinkButton = styled.a`
 
 export const Header = ({ filter, setFilter }) => {
   const Desktop = ({ children }) => {
-    const isDesktop = useMediaQuery({ minWidth: 768 });
+    const isDesktop = useMediaQuery({ minWidth: 1025 });
     return isDesktop ? children : null;
   };
 
   const Mobile = ({ children }) => {
-    const isMobile = useMediaQuery({ maxWidth: 767 });
+    const isMobile = useMediaQuery({ maxWidth: 1024 });
     return isMobile ? children : null;
   };
 
