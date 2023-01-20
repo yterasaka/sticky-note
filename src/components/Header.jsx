@@ -1,7 +1,7 @@
 import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 import { BsStickies, BsStar, BsTrash } from "react-icons/bs";
-import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
+import { FiGithub, FiLinkedin } from "react-icons/fi";
 import logo from "../image/logo_transparent.png";
 import SlideMenu from "./SlideMenu";
 
@@ -66,8 +66,8 @@ const LinkButtonMenu = styled.div`
 `;
 
 const LinkButton = styled.a`
-  font-size: 1.4rem;
-  color: #276d9b;
+  font-size: 1.3rem;
+  color: #373a47;
   margin-left: 20px;
   &:hover {
     opacity: 0.7;
@@ -103,10 +103,10 @@ export const Header = ({ filter, setFilter }) => {
         <SlideMenu filter={filter} setFilter={setFilter} />
         <LinkButtonMenu>
           <LinkButton href="https://github.com/yterasaka">
-            <AiFillGithub />
+            <FiGithub />
           </LinkButton>
           <LinkButton href="https://www.linkedin.com/in/yuki-terasaka-a5399b129/">
-            <AiFillLinkedin />
+            <FiLinkedin />
           </LinkButton>
         </LinkButtonMenu>
       </Mobile>
@@ -126,10 +126,10 @@ export const Header = ({ filter, setFilter }) => {
         <Logo src={logo} alt="image" />
         <LinkButtonMenu>
           <LinkButton href="https://github.com/yterasaka">
-            <AiFillGithub />
+            <FiGithub />
           </LinkButton>
           <LinkButton href="https://www.linkedin.com/in/yuki-terasaka-a5399b129/">
-            <AiFillLinkedin />
+            <FiLinkedin />
           </LinkButton>
         </LinkButtonMenu>
       </Desktop>
