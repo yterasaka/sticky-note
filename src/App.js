@@ -9,7 +9,8 @@ import {
 
 import { Header } from "./components/Header";
 import { Modal } from "./components/Modal";
-import { media } from "./utils/constants"
+import { media } from "./utils/constants";
+import { ModalEditMemo } from "./components/ModalEditMemo";
 
 // CSS
 const Container = styled.div`
@@ -106,6 +107,8 @@ const App = () => {
   const [filter, setFilter] = useState("all");
   const [filteredMemos, setFilteredMemos] = useState([]);
   const [isShow, setIsShow] = useState(false);
+  const [editMemo, setEditMemo] = useState([]);
+  const [isShowEdit, setIsShowEdit] = useState(false);
 
   useEffect(() => {
     const memos = JSON.parse(localStorage.getItem("Memos"));
@@ -149,6 +152,18 @@ const App = () => {
     localStorage.setItem("Memos", JSON.stringify(newMemos));
   };
 
+  const openModalEdit = () => {
+    setIsShowEdit(true);
+  };
+
+  const closeModalEdit = () => {
+    setIsShowEdit(false);
+  };
+
+  const EditMemoFilter = (obj) => {
+    setEditMemo(obj);
+  };
+
   return (
     <Container>
       <Header disabled={isShow} filter={filter} setFilter={setFilter} />
@@ -164,15 +179,14 @@ const App = () => {
       <MemoArea>
         {filteredMemos.map((memo) => {
           return (
-            <MemoItem key={memo.id}>
-              <MemoText
-                type="text"
-                disabled
-                // disabled={memo.removed}
-                value={memo.value}
-                onChange={(e) => handleOnEdit(memo, "value", e.target.value)}
-                onClick={() => console.log("test")}
-              />
+            <MemoItem
+              key={memo.id}
+              onClick={() => {
+                openModalEdit();
+                EditMemoFilter(memo);
+              }}
+            >
+              <MemoText type="text" disabled value={memo.value} />
               <MemoButton>
                 <MemoCheck
                   disabled={memo.removed}
@@ -190,6 +204,15 @@ const App = () => {
           );
         })}
       </MemoArea>
+      {isShowEdit && (
+        <ModalEditMemo
+          closeModalEdit={closeModalEdit}
+          memos={memos}
+          setMemos={setMemos}
+          editMemo={editMemo}
+          setEditMemo={setEditMemo}
+        />
+      )}
     </Container>
   );
 };
