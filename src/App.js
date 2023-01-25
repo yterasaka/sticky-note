@@ -65,6 +65,7 @@ const MemoText = styled.textarea`
   border: none;
   background-color: beige;
   height: 100%;
+  caret-color: transparent;
 `;
 
 const MemoButton = styled.div`
@@ -79,7 +80,7 @@ const MemoCheck = styled.button`
   border-radius: 3px;
   color: #276d9b;
   width: 30px;
-  padding: 2px;
+  padding-top: 10px;
   font-size: 1rem;
   &:hover {
     cursor: pointer;
@@ -95,7 +96,7 @@ const MemoTrash = styled.button`
   border-radius: 3px;
   color: #711423;
   width: 30px;
-  padding: 2px;
+  padding-top: 10px;
   font-size: 1rem;
   &:hover {
     cursor: pointer;
@@ -179,14 +180,15 @@ const App = () => {
       <MemoArea>
         {filteredMemos.map((memo) => {
           return (
-            <MemoItem
-              key={memo.id}
-              onClick={() => {
-                openModalEdit();
-                EditMemoFilter(memo);
-              }}
-            >
-              <MemoText type="text" disabled value={memo.value} />
+            <MemoItem key={memo.id}>
+              <MemoText
+                type="text"
+                value={memo.value}
+                onClick={() => {
+                  openModalEdit();
+                  EditMemoFilter(memo);
+                }}
+              />
               <MemoButton>
                 <MemoCheck
                   disabled={memo.removed}
