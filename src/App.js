@@ -9,6 +9,8 @@ import {
 
 import { Header } from "./components/Header";
 import { Modal } from "./components/Modal";
+import { media } from "./utils/constants";
+import { ModalEditMemo } from "./components/ModalEditMemo";
 
 // CSS
 const Container = styled.div`
@@ -24,6 +26,14 @@ const MemoArea = styled.ul`
   justify-content: center;
   width: 80%;
   padding: 0;
+
+  ${media.tablet`
+    width: 90%;
+    `}
+
+  ${media.phone`
+    width: 100%;
+    `}
 `;
 
 const MemoItem = styled.li`
@@ -37,6 +47,16 @@ const MemoItem = styled.li`
   background-color: beige;
   display: flex;
   flex-direction: column;
+
+  ${media.tablet`
+    width: 170px;
+    height: 170px;
+    `}
+
+  ${media.phone`
+    width: 120px;
+    height: 120px;
+    `}
 `;
 
 const MemoText = styled.textarea`
@@ -45,6 +65,7 @@ const MemoText = styled.textarea`
   border: none;
   background-color: beige;
   height: 100%;
+  caret-color: transparent;
 `;
 
 const MemoButton = styled.div`
@@ -59,7 +80,7 @@ const MemoCheck = styled.button`
   border-radius: 3px;
   color: #276d9b;
   width: 30px;
-  padding: 2px;
+  padding-top: 10px;
   font-size: 1rem;
   &:hover {
     cursor: pointer;
@@ -75,7 +96,7 @@ const MemoTrash = styled.button`
   border-radius: 3px;
   color: #711423;
   width: 30px;
-  padding: 2px;
+  padding-top: 10px;
   font-size: 1rem;
   &:hover {
     cursor: pointer;
@@ -87,6 +108,8 @@ const App = () => {
   const [filter, setFilter] = useState("all");
   const [filteredMemos, setFilteredMemos] = useState([]);
   const [isShow, setIsShow] = useState(false);
+  const [editMemo, setEditMemo] = useState([]);
+  const [isShowEdit, setIsShowEdit] = useState(false);
 
   useEffect(() => {
     const memos = JSON.parse(localStorage.getItem("Memos"));
@@ -130,6 +153,18 @@ const App = () => {
     localStorage.setItem("Memos", JSON.stringify(newMemos));
   };
 
+  const openModalEdit = () => {
+    setIsShowEdit(true);
+  };
+
+  const closeModalEdit = () => {
+    setIsShowEdit(false);
+  };
+
+  const EditMemoFilter = (obj) => {
+    setEditMemo(obj);
+  };
+
   return (
     <Container>
       <Header disabled={isShow} filter={filter} setFilter={setFilter} />
@@ -148,9 +183,11 @@ const App = () => {
             <MemoItem key={memo.id}>
               <MemoText
                 type="text"
-                disabled={memo.removed}
                 value={memo.value}
-                onChange={(e) => handleOnEdit(memo, "value", e.target.value)}
+                onClick={() => {
+                  openModalEdit();
+                  EditMemoFilter(memo);
+                }}
               />
               <MemoButton>
                 <MemoCheck
@@ -169,6 +206,15 @@ const App = () => {
           );
         })}
       </MemoArea>
+      {isShowEdit && (
+        <ModalEditMemo
+          closeModalEdit={closeModalEdit}
+          memos={memos}
+          setMemos={setMemos}
+          editMemo={editMemo}
+          setEditMemo={setEditMemo}
+        />
+      )}
     </Container>
   );
 };

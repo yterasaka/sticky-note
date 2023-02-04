@@ -1,9 +1,10 @@
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 import { BsStickies, BsStar, BsTrash } from "react-icons/bs";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import logo from "../image/logo_transparent.png";
 import SlideMenu from "./SlideMenu";
+import { Desktop, Mobile } from "../utils/constants";
 
 // CSS
 const HeaderWrapper = styled.header`
@@ -13,8 +14,8 @@ const HeaderWrapper = styled.header`
   width: 100%;
   position: fixed;
   justify-content: space-between;
-  background-color: #fef4a8;
-  border-bottom: 1px solid #1d1f20;
+  background-color:#f5f5f5;;
+  border-bottom: none;
   z-index: 1;
   top: 0;
 `;
@@ -34,13 +35,13 @@ const FilterMenu = styled.div`
 const FilterButton = styled.button`
   color: #373a47;
   border: none;
-  font-size: 1.1rem;
-  padding: 5px 10px;
-  margin: auto 5px;
-  border-radius: 5px;
-  border: solid 1px #373a47;
+  font-size: 1.5rem;
+  margin-left: 20px;
+  margin-top: 10px;
+  background: none;
   &:hover {
     cursor: pointer;
+    opacity: 0.7;
   }
   &:active {
     opacity: 1;
@@ -48,16 +49,16 @@ const FilterButton = styled.button`
 `;
 
 const FilterButtonAll = styled(FilterButton)`
-  background-color: ${({ filter }) =>
-    filter === "all" ? "#87CEFA" : "#f5f5f5"};
+  color: ${({ filter }) =>
+    filter === "all" ? "#F08080" : "#373a47"};
 `;
 const FilterButtonStar = styled(FilterButton)`
-  background-color: ${({ filter }) =>
-    filter === "star" ? "#87CEFA" : "#f5f5f5"};
+  color: ${({ filter }) =>
+      filter === "star" ? "#F08080" : "#373a47"};
 `;
 const FilterButtonTrash = styled(FilterButton)`
-  background-color: ${({ filter }) =>
-    filter === "trash" ? "#FFB6C1" : "#f5f5f5"};
+  color: ${({ filter }) =>
+    filter === "trash" ? "#F08080" : "#373a47"};
 `;
 
 const LinkButtonMenu = styled.div`
@@ -76,25 +77,9 @@ const LinkButton = styled.a`
 `;
 
 export const Header = ({ filter, setFilter }) => {
-  const Desktop = ({ children }) => {
-    const isDesktop = useMediaQuery({ minWidth: 1025 });
-    return isDesktop ? children : null;
-  };
-
-  const Mobile = ({ children }) => {
-    const isMobile = useMediaQuery({ maxWidth: 1024 });
-    return isMobile ? children : null;
-  };
-
-  const all = () => {
-    setFilter("all");
-  };
-  const star = () => {
-    setFilter("star");
-  };
-  const trash = () => {
-    setFilter("trash");
-  };
+  const handleFilter = (t) => {
+    setFilter(t);
+  }
 
   return (
     <HeaderWrapper>
@@ -113,14 +98,17 @@ export const Header = ({ filter, setFilter }) => {
       {/* Desktop */}
       <Desktop>
         <FilterMenu>
-          <FilterButtonAll filter={filter} onClick={all}>
-            <BsStickies /> All Notes
+          <FilterButtonAll filter={filter} onClick={() => handleFilter("all")}>
+            <BsStickies /> 
+            {/* All Notes */}
           </FilterButtonAll>
-          <FilterButtonStar filter={filter} onClick={star}>
-            <BsStar /> Star
+          <FilterButtonStar filter={filter} onClick={() => handleFilter("star")}>
+            <BsStar /> 
+            {/* Star */}
           </FilterButtonStar>
-          <FilterButtonTrash filter={filter} onClick={trash}>
-            <BsTrash /> Trash
+          <FilterButtonTrash filter={filter} onClick={() => handleFilter("trash")}>
+            <BsTrash /> 
+            {/* Trash */}
           </FilterButtonTrash>
         </FilterMenu>
         <Logo src={logo} alt="image" />

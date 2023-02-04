@@ -94,16 +94,8 @@ export const SlideMenu = ({ filter, setFilter }) => {
     setIsOpen(!isOpen);
   };
 
-  const all = () => {
-    setFilter("all");
-    setIsOpen(false);
-  };
-  const star = () => {
-    setFilter("star");
-    setIsOpen(false);
-  };
-  const trash = () => {
-    setFilter("trash");
+  const handleFilter = (target) => {
+    setFilter(target);
     setIsOpen(false);
   };
 
@@ -115,13 +107,13 @@ export const SlideMenu = ({ filter, setFilter }) => {
       onClose={handleIsOpen}
     >
       <Logo src={logo} alt="image" />
-      <FilterButtonAll filter={filter} onClick={all}>
+      <FilterButtonAll filter={filter} onClick={() => handleFilter("all")}>
         <BsStickies /> All Notes
       </FilterButtonAll>
-      <FilterButtonStar filter={filter} onClick={star}>
+      <FilterButtonStar filter={filter} onClick={() => handleFilter("star")}>
         <BsStar /> Star
       </FilterButtonStar>
-      <FilterButtonTrash filter={filter} onClick={trash}>
+      <FilterButtonTrash filter={filter} onClick={() => handleFilter("trash")}>
         <BsTrash /> Trash
       </FilterButtonTrash>
     </Menu>

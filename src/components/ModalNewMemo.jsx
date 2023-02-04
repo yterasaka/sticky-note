@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { BsPencilFill, BsX } from "react-icons/bs";
 import { ModalView, CloseButton } from "./Modal";
+import { media } from '../utils/constants'
+
 
 // CSS
 const ModalButtonB = styled.button`
@@ -16,6 +18,7 @@ const ModalButtonB = styled.button`
   text-decoration: none;
   font-size: 1.1rem;
   background-color: #6495ed;
+  -webkit-appearance: none;
   &:hover {
     opacity: 0.7;
     cursor: pointer;
@@ -40,18 +43,18 @@ const TextInput = styled.textarea`
   margin-bottom: 5px;
   resize: none;
   border: none;
-  // Tablet
-  @media (max-width: 1024px) {
+
+  ${media.tablet`
     height: 250px;
     width: 60vw;
-    font-size: large;
-  }
-  // Mobile
-  @media (max-width: 767px) {
+    font-size: 1rem;
+    `}
+
+  ${media.phone`
     height: 250px;
     width: 70vw;
-    font-size: large;
-  }
+    font-size: 1rem;
+    `}
 `;
 
 const AddButton = styled.input`
