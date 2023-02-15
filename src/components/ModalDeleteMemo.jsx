@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { BsTrashFill, BsX } from "react-icons/bs";
+import { Tooltip } from "react-tooltip";
+
 import { ModalView, CloseButton } from "./Modal";
 import { media } from '../utils/constants'
 
@@ -80,9 +82,10 @@ export const ModalDeleteMemo = ({
 }) => {
   return (
     <div>
-      <ModalButtonA onClick={openModal}>
+      <ModalButtonA id="emptyTip" data-tooltip-content="Empty trash" onClick={openModal}>
         <BsTrashFill />
       </ModalButtonA>
+      <Tooltip anchorId="emptyTip" />
       {isShow && (
         <ModalView>
           <DeleteMessage>

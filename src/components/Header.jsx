@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import { BsStickies, BsStar, BsTrash } from "react-icons/bs";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
+import { Tooltip } from "react-tooltip";
 import logo from "../image/logo_transparent.png";
 import SlideMenu from "./SlideMenu";
 import { Desktop, Mobile } from "../utils/constants";
@@ -14,7 +15,7 @@ const HeaderWrapper = styled.header`
   width: 100%;
   position: fixed;
   justify-content: space-between;
-  background-color:#f5f5f5;;
+  background-color: #f5f5f5;
   border-bottom: none;
   z-index: 1;
   top: 0;
@@ -49,16 +50,13 @@ const FilterButton = styled.button`
 `;
 
 const FilterButtonAll = styled(FilterButton)`
-  color: ${({ filter }) =>
-    filter === "all" ? "#F08080" : "#373a47"};
+  color: ${({ filter }) => (filter === "all" ? "#F08080" : "#373a47")};
 `;
 const FilterButtonStar = styled(FilterButton)`
-  color: ${({ filter }) =>
-      filter === "star" ? "#F08080" : "#373a47"};
+  color: ${({ filter }) => (filter === "star" ? "#F08080" : "#373a47")};
 `;
 const FilterButtonTrash = styled(FilterButton)`
-  color: ${({ filter }) =>
-    filter === "trash" ? "#F08080" : "#373a47"};
+  color: ${({ filter }) => (filter === "trash" ? "#F08080" : "#373a47")};
 `;
 
 const LinkButtonMenu = styled.div`
@@ -79,7 +77,7 @@ const LinkButton = styled.a`
 export const Header = ({ filter, setFilter }) => {
   const handleFilter = (t) => {
     setFilter(t);
-  }
+  };
 
   return (
     <HeaderWrapper>
@@ -98,18 +96,36 @@ export const Header = ({ filter, setFilter }) => {
       {/* Desktop */}
       <Desktop>
         <FilterMenu>
-          <FilterButtonAll filter={filter} onClick={() => handleFilter("all")}>
-            <BsStickies /> 
+          <FilterButtonAll
+            id="allTip"
+            data-tooltip-content="Show all notes"
+            filter={filter}
+            onClick={() => handleFilter("all")}
+          >
+            <BsStickies />
             {/* All Notes */}
           </FilterButtonAll>
-          <FilterButtonStar filter={filter} onClick={() => handleFilter("star")}>
-            <BsStar /> 
+          <Tooltip anchorId="allTip" />
+          <FilterButtonStar
+            id="starTip"
+            data-tooltip-content="Show starred notes"
+            filter={filter}
+            onClick={() => handleFilter("star")}
+          >
+            <BsStar />
             {/* Star */}
           </FilterButtonStar>
-          <FilterButtonTrash filter={filter} onClick={() => handleFilter("trash")}>
-            <BsTrash /> 
+          <Tooltip anchorId="starTip" />
+          <FilterButtonTrash
+            id="trashTip"
+            data-tooltip-content="Show notes in trash"
+            filter={filter}
+            onClick={() => handleFilter("trash")}
+          >
+            <BsTrash />
             {/* Trash */}
           </FilterButtonTrash>
+          <Tooltip anchorId="trashTip" />
         </FilterMenu>
         <Logo src={logo} alt="image" />
         <LinkButtonMenu>

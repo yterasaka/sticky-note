@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BsPencilFill, BsX } from "react-icons/bs";
+import { Tooltip } from "react-tooltip";
 import { ModalView, CloseButton } from "./Modal";
 import { media } from '../utils/constants'
 
@@ -91,9 +92,10 @@ export const ModalNewMemo = ({
 }) => {
   return (
     <div>
-      <ModalButtonB onClick={openModal}>
+      <ModalButtonB id="createTip" data-tooltip-content="Create a new note" onClick={openModal}>
         <BsPencilFill />
       </ModalButtonB>
+      <Tooltip anchorId="createTip" />
       {isShow && (
         <ModalView>
           <Form

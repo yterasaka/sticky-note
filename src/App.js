@@ -6,6 +6,7 @@ import {
   BsStar,
   BsArrowCounterclockwise,
 } from "react-icons/bs";
+import { Tooltip } from "react-tooltip";
 
 import { Header } from "./components/Header";
 import { Modal } from "./components/Modal";
@@ -191,16 +192,22 @@ const App = () => {
               />
               <MemoButton>
                 <MemoCheck
+                  id={'starAddTip' + memo.id}
+                  data-tooltip-content="Add a star"
                   disabled={memo.removed}
                   onClick={() => handleOnEdit(memo, "checked", !memo.checked)}
                 >
                   {memo.checked ? <BsFillStarFill /> : <BsStar />}
                 </MemoCheck>
+                <Tooltip anchorId={'starAddTip' + memo.id} />
                 <MemoTrash
+                  id={'trashMoveTip' + memo.id}
+                  data-tooltip-content="Move to trash"
                   onClick={() => handleOnEdit(memo, "removed", !memo.removed)}
                 >
                   {memo.removed ? <BsArrowCounterclockwise /> : <BsTrash />}
                 </MemoTrash>
+                <Tooltip anchorId={'trashMoveTip' + memo.id} />
               </MemoButton>
             </MemoItem>
           );
