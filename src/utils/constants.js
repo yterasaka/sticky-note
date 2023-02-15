@@ -12,7 +12,7 @@ export const Mobile = ({ children }) => {
     return isMobile ? children : null;
 };
 
-// breacpoints styled-components
+// breakpoints styled-components
 export const media = {
     desktop: (...args) => css`
     @media (min-width: 1025px) {

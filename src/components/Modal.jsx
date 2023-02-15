@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { ModalDeleteMemo } from "./ModalDeleteMemo";
 import { ModalNewMemo } from "./ModalNewMemo";
+import { media } from '../utils/constants'
 
 // CSS
 export const CloseButton = styled.button`
@@ -15,6 +16,10 @@ export const CloseButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+
+  ${media.tablet`
+    margin-top: 10px;
+    `}
 `;
 
 export const ModalView = styled.div`

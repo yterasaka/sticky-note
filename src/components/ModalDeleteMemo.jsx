@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { BsTrashFill, BsX } from "react-icons/bs";
 import { ModalView, CloseButton } from "./Modal";
+import { media } from '../utils/constants'
 
 // CSS
 const ModalButtonA = styled.button`
@@ -33,9 +34,24 @@ const DeleteMessage = styled.div`
   padding-right: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
+
+  ${media.tablet`
+    margin: 0;
+    height: 100%;
+    width 100%;
+    position: relative;
+    `}
 `;
 const Message = styled.div`
   padding: 30px 15px 40px;
+
+  ${media.tablet`
+    padding-top: 300px;
+    `}
+
+  ${media.phone`
+    padding-top: 200px;
+  `}
 `;
 const DeleteButton = styled.button`
   width: 100px;

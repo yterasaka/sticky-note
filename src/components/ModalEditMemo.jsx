@@ -15,6 +15,12 @@ const EditArea = styled.div`
   padding-right: 10px;
   padding-bottom: 15px;
   border-radius: 10px;
+
+  ${media.tablet`
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    `}
 `;
 const TextInput = styled.textarea`
   height: 200px;
@@ -25,15 +31,15 @@ const TextInput = styled.textarea`
   border: none;
 
   ${media.tablet`
-    height: 250px;
-    width: 60vw;
+    margin: 20px auto;
+    height: 80%;
+    width 80%;
     font-size: 1rem;
     `}
 
   ${media.phone`
-    height: 250px;
-    width: 70vw;
-    font-size: 1rem;
+    height: 80%;
+    width: 90%;
     `}
 `;
 
