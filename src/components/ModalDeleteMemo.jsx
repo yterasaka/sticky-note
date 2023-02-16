@@ -36,6 +36,7 @@ const DeleteMessage = styled.div`
   padding-right: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
+  font-size: 16px;
 
   ${media.tablet`
     margin: 0;

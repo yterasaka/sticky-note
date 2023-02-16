@@ -44,12 +44,13 @@ const Form = styled.form`
     `}
 `;
 const TextInput = styled.textarea`
-  height: 200px;
-  width: 350px;
+  height: 300px;
+  width: 400px;
   outline: none;
   margin-bottom: 5px;
   resize: none;
   border: none;
+  font-size: 16px;
 
   ${media.tablet`
     margin: 20px auto;
