@@ -8,8 +8,8 @@ With "StickyNote" you create virtual sticky notes on your browser.
 
 Demo: https://yterasaka.github.io/sticky-note/
 
-![StickyNote](image/StickyNoteImage1.jpg)
-![StickyNote](image/StickyNoteImage2.jpg)
+![StickyNote](image/StickyNoteImage1.png)
+![StickyNote](image/StickyNoteImage2.png)
 
 # Features
 
@@ -29,8 +29,8 @@ Demo: https://yterasaka.github.io/sticky-note/
 
 I will be adding more function.
 
-- [ ] Edit memos on modal screen
-- [ ] Display tooltips on mouse hover for each button
+- [x] Edit memos on modal screen
+- [x] Display tooltips on mouse hover for each button
 - [ ] Animate the movement of sticky notes when adding or deleting a note
 - [ ] Change the size of sticky notes depending on the length of the memo
 - [ ] Reordering of memos
