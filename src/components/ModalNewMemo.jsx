@@ -112,6 +112,7 @@ export const ModalNewMemo = ({
               value={text}
               placeholder="Enter Memo"
               onChange={(e) => handleOnChange(e)}
+              autoFocus={true}
             />
             <AddButton type="submit" value="Add" onSubmit={handleOnSubmit} />
           </Form>

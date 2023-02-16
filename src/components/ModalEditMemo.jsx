@@ -98,6 +98,7 @@ export const ModalEditMemo = ({
           type="text"
           value={editMemo.value}
           onChange={(e) => handleOnEditMemo("value", e.target.value)}
+          autoFocus={true}
         />
         <ApplyButton onClick={() => {handleOnApply(); closeModalEdit();}}>Apply</ApplyButton>
       </EditArea>
