@@ -86,6 +86,8 @@ export const ModalEditMemo = ({
     });
     setMemos(newMemos);
     localStorage.setItem("Memos", JSON.stringify(newMemos));
+
+    closeModalEdit();
   };
 
   return (
@@ -100,14 +102,7 @@ export const ModalEditMemo = ({
           onChange={(e) => handleOnEditMemo("value", e.target.value)}
           autoFocus={true}
         />
-        <ApplyButton
-          onClick={() => {
-            handleOnApply();
-            closeModalEdit();
-          }}
-        >
-          Apply
-        </ApplyButton>
+        <ApplyButton onClick={handleOnApply}>Apply</ApplyButton>
       </EditArea>
     </ModalView>
   );
