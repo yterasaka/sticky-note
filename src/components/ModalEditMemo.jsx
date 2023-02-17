@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BsX } from "react-icons/bs";
 import { ModalView, CloseButton } from "./Modal";
-import { media } from "../utils/constants";
+import { media, colors } from "../utils/constants";
 
 // CSS
 const EditArea = styled.div`
@@ -10,7 +10,7 @@ const EditArea = styled.div`
   height: rem;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: white;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 15px;
@@ -48,11 +48,11 @@ const ApplyButton = styled.button`
   width: 100px;
   padding: 3px;
   margin: 0 auto;
-  background-color: lightblue;
+  background-color: ${colors.cornflowerblue};
   border: none;
-  box-shadow: 0px 3px #bfbfbf;
+  box-shadow: 0px 3px ${colors.lightgray};
   border-radius: 50px;
-  color: #373a47;
+  color: white;
   &:hover {
     cursor: pointer;
   }
@@ -70,7 +70,6 @@ export const ModalEditMemo = ({
   setEditMemo,
   closeModalEdit,
 }) => {
-
   const handleOnEditMemo = (key, value) => {
     let deepCopy = { ...editMemo };
     deepCopy[key] = value;
@@ -87,7 +86,7 @@ export const ModalEditMemo = ({
     });
     setMemos(newMemos);
     localStorage.setItem("Memos", JSON.stringify(newMemos));
-  }
+  };
 
   return (
     <ModalView>
@@ -101,7 +100,14 @@ export const ModalEditMemo = ({
           onChange={(e) => handleOnEditMemo("value", e.target.value)}
           autoFocus={true}
         />
-        <ApplyButton onClick={() => {handleOnApply(); closeModalEdit();}}>Apply</ApplyButton>
+        <ApplyButton
+          onClick={() => {
+            handleOnApply();
+            closeModalEdit();
+          }}
+        >
+          Apply
+        </ApplyButton>
       </EditArea>
     </ModalView>
   );

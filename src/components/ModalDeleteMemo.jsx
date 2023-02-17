@@ -3,7 +3,7 @@ import { BsTrashFill, BsX } from "react-icons/bs";
 import { Tooltip } from "react-tooltip";
 
 import { ModalView, CloseButton } from "./Modal";
-import { media } from '../utils/constants'
+import { media, colors } from "../utils/constants";
 
 // CSS
 const ModalButtonA = styled.button`
@@ -18,7 +18,7 @@ const ModalButtonA = styled.button`
   color: white;
   text-decoration: none;
   font-size: 1.1rem;
-  background-color: #cd5c5c;
+  background-color: ${colors.indianred};
   &:hover {
     opacity: 0.7;
     cursor: pointer;
@@ -31,7 +31,7 @@ const DeleteMessage = styled.div`
   width: 250px;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: white;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 10px;
@@ -60,11 +60,11 @@ const DeleteButton = styled.button`
   width: 100px;
   padding: 3px;
   margin: 0 auto;
-  background-color: #ffb6c1;
+  background-color: ${colors.indianred};
   border: none;
-  box-shadow: 0px 3px #bfbfbf;
+  box-shadow: 0px 3px ${colors.lightgray};
   border-radius: 50px;
-  color: #373a47;
+  color: white;
   &:hover {
     cursor: pointer;
   }
@@ -83,7 +83,11 @@ export const ModalDeleteMemo = ({
 }) => {
   return (
     <div>
-      <ModalButtonA id="emptyTip" data-tooltip-content="Empty trash" onClick={openModal}>
+      <ModalButtonA
+        id="emptyTip"
+        data-tooltip-content="Empty trash"
+        onClick={openModal}
+      >
         <BsTrashFill />
       </ModalButtonA>
       <Tooltip anchorId="emptyTip" />

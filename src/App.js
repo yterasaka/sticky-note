@@ -10,7 +10,7 @@ import { Tooltip } from "react-tooltip";
 
 import { Header } from "./components/Header";
 import { Modal } from "./components/Modal";
-import { media } from "./utils/constants";
+import { media, colors } from "./utils/constants";
 import { ModalEditMemo } from "./components/ModalEditMemo";
 
 // CSS
@@ -79,7 +79,7 @@ const MemoCheck = styled.button`
   background-color: beige;
   border: none;
   border-radius: 3px;
-  color: #276d9b;
+  color: ${colors.teal};
   width: 30px;
   padding-top: 10px;
   font-size: 1rem;
@@ -95,7 +95,7 @@ const MemoTrash = styled.button`
   background-color: beige;
   border: none;
   border-radius: 3px;
-  color: #711423;
+  color: ${colors.indianred};
   width: 30px;
   padding-top: 10px;
   font-size: 1rem;
@@ -192,22 +192,22 @@ const App = () => {
               />
               <MemoButton>
                 <MemoCheck
-                  id={'starAddTip' + memo.id}
+                  id={"starAddTip" + memo.id}
                   data-tooltip-content="Add a star"
                   disabled={memo.removed}
                   onClick={() => handleOnEdit(memo, "checked", !memo.checked)}
                 >
                   {memo.checked ? <BsFillStarFill /> : <BsStar />}
                 </MemoCheck>
-                <Tooltip anchorId={'starAddTip' + memo.id} />
+                <Tooltip anchorId={"starAddTip" + memo.id} />
                 <MemoTrash
-                  id={'trashMoveTip' + memo.id}
+                  id={"trashMoveTip" + memo.id}
                   data-tooltip-content="Move to trash"
                   onClick={() => handleOnEdit(memo, "removed", !memo.removed)}
                 >
                   {memo.removed ? <BsArrowCounterclockwise /> : <BsTrash />}
                 </MemoTrash>
-                <Tooltip anchorId={'trashMoveTip' + memo.id} />
+                <Tooltip anchorId={"trashMoveTip" + memo.id} />
               </MemoButton>
             </MemoItem>
           );
