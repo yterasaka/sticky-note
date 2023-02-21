@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { ModalDeleteMemo } from "./ModalDeleteMemo";
 import { ModalNewMemo } from "./ModalNewMemo";
-import { media } from '../utils/constants'
+import { media, colors } from "../utils/constants";
 
 // CSS
 export const CloseButton = styled.button`
@@ -11,7 +11,7 @@ export const CloseButton = styled.button`
   margin-right: -10px;
   background: none;
   border: none;
-  color: lightgray;
+  color: ${colors.lightgray};
   font-size: 1.5rem;
   &:hover {
     cursor: pointer;

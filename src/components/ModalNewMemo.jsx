@@ -2,8 +2,7 @@ import styled from "styled-components";
 import { BsPencilFill, BsX } from "react-icons/bs";
 import { Tooltip } from "react-tooltip";
 import { ModalView, CloseButton } from "./Modal";
-import { media } from '../utils/constants'
-
+import { media, colors } from "../utils/constants";
 
 // CSS
 const ModalButtonB = styled.button`
@@ -18,7 +17,7 @@ const ModalButtonB = styled.button`
   color: white;
   text-decoration: none;
   font-size: 1.1rem;
-  background-color: #6495ed;
+  background-color: ${colors.cornflowerblue};
   -webkit-appearance: none;
   &:hover {
     opacity: 0.7;
@@ -31,7 +30,7 @@ const Form = styled.form`
   height: rem;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: white;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 15px;
@@ -68,11 +67,11 @@ const AddButton = styled.input`
   width: 100px;
   padding: 3px;
   margin: 0 auto;
-  background-color: lightblue;
+  background-color: ${colors.cornflowerblue};
   border: none;
-  box-shadow: 0px 3px #bfbfbf;
+  box-shadow: 0px 3px ${colors.lightgray};
   border-radius: 50px;
-  color: #373a47;
+  color: white;
   &:hover {
     cursor: pointer;
   }
@@ -93,7 +92,11 @@ export const ModalNewMemo = ({
 }) => {
   return (
     <div>
-      <ModalButtonB id="createTip" data-tooltip-content="Create a new note" onClick={openModal}>
+      <ModalButtonB
+        id="createTip"
+        data-tooltip-content="Create a new note"
+        onClick={openModal}
+      >
         <BsPencilFill />
       </ModalButtonB>
       <Tooltip anchorId="createTip" />

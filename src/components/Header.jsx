@@ -5,7 +5,7 @@ import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { Tooltip } from "react-tooltip";
 import logo from "../image/logo_transparent.png";
 import SlideMenu from "./SlideMenu";
-import { Desktop, Mobile } from "../utils/constants";
+import { Desktop, Mobile, colors } from "../utils/constants";
 
 // CSS
 const HeaderWrapper = styled.header`
@@ -15,7 +15,7 @@ const HeaderWrapper = styled.header`
   width: 100%;
   position: fixed;
   justify-content: space-between;
-  background-color: #f5f5f5;
+  background-color: ${colors.whitesmoke};
   border-bottom: none;
   z-index: 1;
   top: 0;
@@ -50,13 +50,16 @@ const FilterButton = styled.button`
 `;
 
 const FilterButtonAll = styled(FilterButton)`
-  color: ${({ filter }) => (filter === "all" ? "#F08080" : "#373a47")};
+  color: ${({ filter }) =>
+    filter === "all" ? `${colors.lightcoral}` : `${colors.darkgray}`};
 `;
 const FilterButtonStar = styled(FilterButton)`
-  color: ${({ filter }) => (filter === "star" ? "#F08080" : "#373a47")};
+  color: ${({ filter }) =>
+    filter === "star" ? `${colors.lightcoral}` : `${colors.darkgray}`};
 `;
 const FilterButtonTrash = styled(FilterButton)`
-  color: ${({ filter }) => (filter === "trash" ? "#F08080" : "#373a47")};
+  color: ${({ filter }) =>
+    filter === "trash" ? `${colors.lightcoral}` : `${colors.darkgray}`};
 `;
 
 const LinkButtonMenu = styled.div`
@@ -66,7 +69,7 @@ const LinkButtonMenu = styled.div`
 
 const LinkButton = styled.a`
   font-size: 1.3rem;
-  color: #373a47;
+  color: ${colors.darkgray};
   margin-left: 20px;
   &:hover {
     opacity: 0.7;
